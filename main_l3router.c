@@ -119,14 +119,12 @@ void learn_smac(struct fast_packet *pkt) {
 	// Find the neigh_table entry with ip4 equal to ar->sip (or a new entry)
 	if ((macidx = find_mac_by_ip4(ar->ar_sip, pkt->um.inport, &idx)) == -1) {
 		macidx = idx;
-		xprintf("alive0\n");
 	}
-	xprintf("alive1\n");
 	// Insert <ip, mac> entry into neighbor table of this inport
+	ports[pkt->um.inport].neigh[macidx].time = 1;
 	ports[pkt->um.inport].neigh[macidx].ip4 = ar->ar_sip;
 	memcpy(ports[pkt->um.inport].neigh[macidx].mac, ar->ar_sha, 6);
 
-	xprintf("alive2\n");
 	xprintf("Learn SMAC Port[%d],NEIGH[%d],Save["NMACFMT"]!\n",
 		pkt->um.inport, j, NMACADDR(eth->smac));
 }
