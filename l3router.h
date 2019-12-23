@@ -137,7 +137,7 @@ struct port_info {
 struct fib4 {
 	u8 if_name[16];
 	u32 dest;			/*网络地址*/
-	u32 gw;				/*网关，下一跳*/
+	u32 gw;				/*网关, 下一跳*/
 	u32 flags;
 	u32 refcnt;
 	u32 use;

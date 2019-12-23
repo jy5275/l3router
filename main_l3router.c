@@ -354,16 +354,16 @@ int dispatch_multicast_pkt(struct fast_packet *pkt) {
 int handle_ipv4(struct fast_packet *pkt) {
 	if(is_host_ether_addr(pkt->data, pkt->um.inport)) {
 		/* 目的MAC为本接口的MAC地址, 说明是主机报文 */
-		// xprintf("Recv Unicast Host Packet,Dispatch Packet!\n");
+		xprintf("Recv Unicast Host Packet,Dispatch Packet!\n");
 		return dispatch_pkt(pkt);
 	}
 	else if(is_multicast_ether_addr(pkt->data)) {
 		/* 路由器是否支持组播功能？ */
-		//xprintf("Recv Multicast Packet!\n");
+		xprintf("Recv Multicast Packet!\n");
 		return dispatch_multicast_pkt(pkt);
 	}
 	else { /* 其他主机MAC，说明是数据平面报文 */
-		//xprintf("Recv Other host Packet,Drop!\n");		
+		xprintf("Recv Other host Packet,Drop!\n");		
 	}
 	return 0;
 }
